@@ -29,7 +29,7 @@ function Footer() {
                     Terima Kasih
                 </h2>
                 <p className="footer-names" style={{ fontFamily: 'Great Vibes, cursive' }}>
-                    Sarah & David {/* Ganti dengan nama kalian */}
+                    Ipan & Risma {/* Ganti dengan nama kalian */}
                 </p>
             </div>
 
