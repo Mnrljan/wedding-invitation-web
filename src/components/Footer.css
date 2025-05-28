@@ -1,0 +1,186 @@
+/* src/components/Footer.css */
+
+/* ==================================== */
+/* 1. Base Footer Styling (Mobile-First) */
+/* ==================================== */
+.main-footer {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    /* Penting untuk gambar di dalamnya */
+    z-index: 0;
+
+    /* Gaya awal (tersembunyi) untuk reveal on scroll */
+    opacity: 0;
+    transform: translateY(30px) translateZ(0);
+    /* Muncul dari bawah */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    /* Transisi untuk reveal */
+    will-change: opacity, transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Kelas untuk memicu reveal */
+.main-footer.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+}
+
+/* ==================================== */
+/* 2. Image Background & Overlay */
+/* ==================================== */
+.footer-image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Tinggi gambar sebagai background */
+    overflow: hidden;
+    z-index: -1;
+    /* Di belakang konten */
+}
+
+.footer-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    /* Redupkan gambar agar teks lebih jelas */
+    transform: translateZ(0);
+    /* Force GPU */
+}
+
+.footer-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Overlay menutupi seluruh gambar */
+    /* Gradasi dari transparan di atas ke abu-abu gelap di bawah */
+    background: linear-gradient(to top, rgba(51, 51, 51, 0.9), rgba(51, 51, 51, 0) 50%);
+    /* #333333 adalah warna untuk footer-bottom-bar */
+    transform: translateZ(0);
+    /* Force GPU */
+}
+
+/* ==================================== */
+/* 3. Main Content Wrapper */
+/* ==================================== */
+.footer-content-wrapper {
+    position: relative;
+    z-index: 1;
+    padding: 100px 20px 40px;
+    /* Padding atas besar untuk menutupi bagian bawah gambar */
+    color: white;
+    /* Warna teks putih di atas background gelap */
+    text-align: center;
+}
+
+.footer-greeting-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-salam {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.footer-thanks-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    /* Ukuran besar untuk "Terima Kasih" */
+    margin-bottom: 10px;
+    color: #F8F8F8;
+    /* Warna putih gading */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.footer-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    /* Ukuran nama mempelai */
+    margin-bottom: 40px;
+    color: #F8F8F8;
+    /* Warna putih gading */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================================== */
+/* 4. Bottom Bar (Design By) */
+/* ==================================== */
+.footer-bottom-bar {
+    background-color: #333333;
+    /* Warna solid gelap untuk bar bawah */
+    color: #AAAAAA;
+    /* Warna teks abu-abu terang */
+    padding: 15px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.footer-design-by {
+    margin-bottom: 5px;
+}
+
+.footer-website-link {
+    color: #CCCCCC;
+    /* Sedikit lebih terang untuk link */
+    text-decoration: none;
+}
+
+.footer-website-link:hover {
+    text-decoration: underline;
+}
+
+/* ==================================== */
+/* 5. Desktop Styles (Media Query) */
+/* ==================================== */
+@media (min-width: 769px) {
+    .main-footer {
+        /* Tinggi gambar background mungkin perlu disesuaikan di desktop */
+        height: auto;
+        /* Biarkan konten menentukan tinggi */
+    }
+
+    .footer-image-background {
+        height: 70%;
+        /* Tinggi gambar background di desktop */
+    }
+
+    .footer-content-wrapper {
+        padding: 150px 40px 60px;
+        /* Padding lebih besar di desktop */
+    }
+
+    .footer-greeting-text {
+        font-size: 1.1rem;
+    }
+
+    .footer-salam {
+        font-size: 1.1rem;
+    }
+
+    .footer-thanks-title {
+        font-size: 3.5rem;
+    }
+
+    .footer-names {
+        font-size: 4rem;
+    }
+
+    .footer-bottom-bar {
+        padding: 20px 40px;
+        font-size: 0.8rem;
+    } }

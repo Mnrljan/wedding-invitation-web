@@ -1,0 +1,133 @@
+/* src/components/HeroSection.css */
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Tinggi penuh viewport di mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    /* Warna teks di atas gambar */
+    overflow: hidden;
+}
+
+.hero-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Pastikan gambar mengisi seluruh area tanpa distorsi */
+    z-index: -1;
+    /* Letakkan di belakang konten */
+    filter: brightness(0.7);
+    /* Redupkan gambar agar teks lebih jelas */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(160, 82, 45, 0.3);
+    /* Gold Blush overlay sedikit transparan */
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    /* Pastikan konten di atas overlay */
+    z-index: 1;
+    padding: 20px;
+    animation: fadeInDown 1s ease-out forwards;
+    /* Animasi muncul dari atas */
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    /* Ukuran untuk mobile */
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.hero-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    /* Ukuran besar untuk mobile */
+    margin-bottom: 15px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    /* Ukuran untuk mobile */
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.hero-cta-button {
+    background-color: #A0522D;
+    /* Gold Blush */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    /* Ukuran untuk mobile */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta-button:hover {
+    background-color: #b36b3f;
+    transform: translateY(-2px);
+}
+
+/* --- Desktop Styles (Media Query) --- */
+@media (min-width: 769px) {
+    .hero-section {
+        height: 100vh;
+        /* Tetap full height */
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .hero-names {
+        font-size: 6rem;
+        /* Ukuran lebih besar untuk desktop */
+    }
+
+    .hero-date {
+        font-size: 1.3rem;
+    }
+
+    .hero-cta-button {
+        font-size: 1.1rem;
+        padding: 15px 40px;
+    }
+}

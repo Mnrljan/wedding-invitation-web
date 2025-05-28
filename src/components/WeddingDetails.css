@@ -1,0 +1,480 @@
+/* src/styles/WeddingDetails.css */
+
+.wedding-details {
+    position: relative;
+    background: linear-gradient(135deg, #FDF7F7 0%, #F7E7E9 100%);
+    overflow: hidden;
+}
+
+/* Hero Image Section */
+.wedding-hero {
+    position: relative;
+    height: 85vh;
+    background: linear-gradient(135deg,
+            rgba(247, 231, 233, 0.9) 0%,
+            rgba(253, 247, 247, 0.8) 50%,
+            rgba(247, 231, 233, 0.9) 100%),
+        url('../images/1.jpeg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+            rgba(160, 82, 45, 0.1) 0%,
+            rgba(247, 231, 233, 0.3) 30%,
+            rgba(253, 247, 247, 0.5) 70%,
+            rgba(215, 157, 134, 0.2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.hero-content {
+    text-align: center;
+    color: #A0522D;
+    max-width: 350px;
+    width: 100%;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.couple-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #A0522D;
+    text-shadow: 2px 2px 4px rgba(160, 82, 45, 0.1);
+    letter-spacing: 2px;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.wedding-date-main {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(160, 82, 45, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(247, 231, 233, 0.3);
+}
+
+.date-block {
+    text-align: center;
+}
+
+.day-name {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #8B4513;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.month-year {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #A0522D;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(160, 82, 45, 0.2);
+}
+
+.date-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #A0522D;
+    line-height: 1;
+    margin: 15px 0;
+    text-shadow: 2px 2px 4px rgba(160, 82, 45, 0.1);
+}
+
+.time-range {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #8B4513;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(160, 82, 45, 0.2);
+}
+
+/* Countdown Section */
+.countdown-section {
+    padding: 50px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #FDF7F7 0%, #F7E7E9 100%);
+}
+
+.countdown-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: #A0522D;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(160, 82, 45, 0.1);
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.time-unit {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px 12px;
+    min-width: 65px;
+    box-shadow: 0 4px 20px rgba(160, 82, 45, 0.1);
+    border: 1px solid rgba(247, 231, 233, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.time-number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #A0522D;
+    line-height: 1;
+}
+
+.time-label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    color: #8B4513;
+    margin-top: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Event Details */
+.event-details {
+    padding: 40px 20px;
+    background: #FFFFFF;
+}
+
+.event-card {
+    background: linear-gradient(135deg, #FDF7F7 0%, #F7E7E9 100%);
+    border-radius: 20px;
+    padding: 30px 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 6px 25px rgba(160, 82, 45, 0.08);
+    border: 1px solid rgba(247, 231, 233, 0.5);
+    animation: slideInUp 0.8s ease-out;
+}
+
+.event-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.event-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #A0522D;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(160, 82, 45, 0.1);
+}
+
+.event-info {
+    font-family: 'Poppins', sans-serif;
+}
+
+.event-time,
+.event-date {
+    font-size: 0.95rem;
+    color: #8B4513;
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+.location-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 6px 25px rgba(160, 82, 45, 0.08);
+    border: 1px solid rgba(247, 231, 233, 0.5);
+    text-align: center;
+    animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.location-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #A0522D;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(160, 82, 45, 0.1);
+}
+
+.venue-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #A0522D;
+    margin-bottom: 15px;
+}
+
+.venue-address {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #8B4513;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.maps-button {
+    background: #A0522D;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(160, 82, 45, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.maps-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(160, 82, 45, 0.4);
+    background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+}
+
+.maps-button:active {
+    transform: translateY(0);
+}
+
+/* Action Buttons */
+.action-buttons {
+    padding: 30px 20px 50px;
+    text-align: center;
+    background: linear-gradient(135deg, #FDF7F7 0%, #F7E7E9 100%);
+}
+
+.save-date-button {
+    background: linear-gradient(135deg, #F7E7E9 0%, #D79D86 100%);
+    color: #A0522D;
+    border: 2px solid #D79D86;
+    border-radius: 25px;
+    padding: 15px 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(160, 82, 45, 0.2);
+    letter-spacing: 0.5px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.save-date-button:hover {
+    background: linear-gradient(135deg, #D79D86 0%, #A0522D 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(160, 82, 45, 0.3);
+}
+
+.save-date-button:active {
+    transform: translateY(0);
+}
+
+/* Decorative Elements */
+.floral-decoration {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.top-decoration {
+    top: 20px;
+    left: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.bottom-decoration {
+    bottom: 20px;
+    right: 20px;
+    animation: float 3s ease-in-out infinite reverse;
+}
+
+.flower-element {
+    font-size: 1.2rem;
+    animation: rotate 4s linear infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 2px 2px 4px rgba(160, 82, 45, 0.1);
+    }
+
+    to {
+        text-shadow: 2px 2px 8px rgba(160, 82, 45, 0.3);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 4px 15px rgba(160, 82, 45, 0.2);
+    }
+
+    to {
+        box-shadow: 0 6px 25px rgba(160, 82, 45, 0.4);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .wedding-hero {
+        height: 90vh;
+    }
+
+    .couple-names {
+        font-size: 4rem;
+    }
+
+    .date-number {
+        font-size: 5rem;
+    }
+
+    .countdown-timer {
+        gap: 25px;
+        max-width: 400px;
+    }
+
+    .time-unit {
+        min-width: 80px;
+        padding: 25px 15px;
+    }
+
+    .time-number {
+        font-size: 2.2rem;
+    }
+
+    .event-details {
+        padding: 60px 40px;
+    }
+
+    .event-card,
+    .location-card {
+        max-width: 500px;
+        margin: 0 auto 30px;
+        padding: 40px 35px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .wedding-details {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .countdown-section {
+        padding: 70px 20px;
+    }
+
+    .event-details {
+        padding: 80px 60px;
+    } }

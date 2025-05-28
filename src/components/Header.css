@@ -1,0 +1,133 @@
+/* src/components/Header.css */
+
+.main-header {
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Sedikit transparan untuk efek modern */
+    padding: 15px 20px;
+    /* Padding untuk mobile */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    /* Agar Header tetap di atas saat scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Pastikan Header di atas konten lain */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    /* Batasi lebar konten header */
+    margin: 0 auto;
+    /* Pusatkan konten */
+}
+
+.site-logo {
+    font-family: 'Great Vibes', cursive;
+    /* Font yang sama dengan nama mempelai */
+    font-size: 1.8rem;
+    /* Ukuran logo di mobile */
+    color: #A0522D;
+    /* Gold Blush */
+    font-weight: normal;
+    /* Pastikan tidak terlalu tebal */
+}
+
+/* --- Hamburger Menu untuk Mobile --- */
+.menu-toggle {
+    display: block;
+    /* Tampilkan di mobile */
+    font-size: 2rem;
+    color: #A0522D;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    /* Pastikan tombol di atas menu yang terbuka */
+}
+
+.main-nav {
+    position: fixed;
+    /* Menu mobile sebagai overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    /* Latar belakang menu overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(100%);
+    /* Sembunyikan menu di luar layar */
+    transition: transform 0.3s ease-out;
+    z-index: 1000;
+    /* Di atas konten tapi di bawah tombol toggle */
+}
+
+.main-nav.is-open {
+    transform: translateX(0);
+    /* Tampilkan menu saat terbuka */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* Item menu vertikal di mobile */
+    gap: 25px;
+    /* Jarak antar item menu */
+    text-align: center;
+}
+
+.main-nav ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    /* Ukuran font menu di mobile */
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: #A0522D;
+}
+
+/* --- Desktop Styles (Media Query) --- */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+        /* Sembunyikan tombol hamburger di desktop */
+    }
+
+    .main-nav {
+        position: static;
+        /* Kembali ke posisi normal di desktop */
+        transform: translateX(0);
+        /* Pastikan selalu terlihat */
+        background-color: transparent;
+        /* Hapus latar belakang overlay */
+        height: auto;
+        width: auto;
+    }
+
+    .main-nav ul {
+        flex-direction: row;
+        /* Item menu horizontal di desktop */
+        gap: 30px;
+        /* Jarak antar item menu */
+    }
+
+    .main-nav ul li a {
+        font-size: 1rem;
+        /* Ukuran font normal di desktop */
+    }
+
+    .site-logo {
+        font-size: 2rem;
+        /* Ukuran logo di desktop */
+    } }

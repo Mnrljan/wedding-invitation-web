@@ -1,0 +1,421 @@
+/* src/components/InvitationLanding.css */
+
+/* --- Mobile-First Base Styling --- */
+
+.invitation-landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F7E7E9;
+    /* Dusty Rose lembut */
+    color: #333;
+    /* Warna teks default */
+    text-align: center;
+    /* Teks di tengah secara default untuk mobile */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    /* Untuk positioning elemen absolut */
+}
+
+.invitation-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    /* Padding lebih kecil untuk mobile */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    /* Lebar maksimal di mobile */
+    width: 100%;
+    animation: fadeInScale 1s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    /* Stack vertikal untuk mobile */
+    justify-content: center;
+    align-items: center;
+    /* Pusatkan item secara horizontal */
+    gap: 25px;
+    /* Jarak antar kolom/bagian di mobile */
+    z-index: 1;
+    position: relative;
+}
+
+/* Animasi untuk kartu undangan */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Styling Konten Card --- */
+
+.card-left,
+.card-right {
+    width: 100%;
+    /* Ambil lebar penuh di mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Pusatkan teks dan item secara horizontal di mobile */
+    text-align: center;
+    /* Pusatkan teks */
+}
+
+.greeting-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    /* Ukuran lebih kecil untuk mobile */
+    margin-bottom: 5px;
+    color: #888;
+}
+
+.guest-name-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    /* Ukuran lebih kecil untuk mobile */
+    font-weight: bold;
+    color: #A0522D;
+    margin-bottom: 15px;
+    /* Jarak lebih kecil */
+    line-height: 1.3;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    /* Ukuran lebih kecil untuk mobile */
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.couple-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    /* Ukuran lebih kecil untuk mobile */
+    color: #A0522D;
+    margin-top: 0;
+    margin-bottom: 10px;
+    /* Jarak lebih kecil */
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.185);
+}
+
+.quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    /* Ukuran lebih kecil untuk mobile */
+    font-style: italic;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* --- Countdown Timer Styling (Mobile) --- */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* Jarak antar item lebih kecil di mobile */
+    margin-top: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 100%;
+    /* Ambil lebar penuh */
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    /* Agar item countdown berbagi ruang secara merata */
+    max-width: 70px;
+    /* Batasi lebar item */
+}
+
+.countdown-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    /* Ukuran angka lebih kecil di mobile */
+    font-weight: bold;
+    color: #A0522D;
+    line-height: 1.2;
+}
+
+.countdown-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7rem;
+    /* Ukuran label lebih kecil */
+    color: #777;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.wedding-finished-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #A0522D;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* --- Couple Image & Love You Text Styling (Mobile) --- */
+.couple-image-frame {
+    width: 200px;
+    /* Ukuran frame lebih kecil di mobile */
+    height: 300px;
+    /* Tinggi frame lebih kecil di mobile */
+    border: 4px solid #A0522D;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    /* Jarak ke teks 'I Love You' */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.couple-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.love-you-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    /* Ukuran lebih kecil untuk mobile */
+    color: #A0522D;
+    font-style: italic;
+    margin-top: -30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.274);
+    z-index: 4;
+}
+
+/* --- Button Container & Button Styling (Mobile) --- */
+.button-container {
+    width: 100%;
+    /* Ambil lebar penuh */
+    display: flex;
+    flex-direction: column;
+    /* Tata vertikal */
+    align-items: center;
+    /* Pusatkan item */
+    gap: 20px;
+    /* Jarak antara garis dan tombol */
+    margin-top: 15px;
+    /* Jarak dari bagian di atasnya */
+}
+
+.line-separator {
+    width: 60px;
+    /* Lebar garis lebih kecil di mobile */
+    height: 2px;
+    background-color: #A0522D;
+}
+
+.open-invitation-button {
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    /* Padding lebih kecil */
+    font-size: 1rem;
+    /* Ukuran font lebih kecil */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto;
+    /* Biarkan lebar mengikuti konten */
+}
+
+.open-invitation-button:hover {
+    background-color: #b36b3f;
+    transform: translateY(-2px);
+}
+
+/* --- Animasi "Tersingkir/Tergeser" untuk Bunga (Mobile) --- */
+/* Animasi dan properti dasar sama, namun posisi awal mungkin perlu disesuaikan */
+@keyframes pushAside {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateX(0) translateY(0) rotate(0deg);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1) translateX(var(--push-x, 0)) translateY(var(--push-y, 0)) rotate(var(--rotate, 0deg));
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(1) translateX(var(--final-x, 0)) translateY(var(--final-y, 0)) rotate(var(--final-rotate, 0deg));
+    }
+}
+
+.decor-bunga1,
+.decor-bunga2,
+.decor-bunga3 {
+    position: absolute;
+    opacity: 0;
+    animation: pushAside 1.8s ease-out forwards;
+    /* Di mobile, mungkin bunga perlu diposisikan sedikit berbeda atau bahkan disembunyikan */
+    display: none;
+    /* Default: Sembunyikan di mobile agar tidak terlalu ramai */
+}
+
+/* --- Media Query untuk Desktop (Overrides Mobile Styles) --- */
+@media (min-width: 769px) {
+
+    /* Mulai terapkan gaya desktop dari lebar 769px ke atas */
+    .invitation-card {
+        padding: 40px;
+        max-width: 900px;
+        /* Lebar yang lebih besar untuk desktop */
+        flex-direction: row;
+        /* Kembali ke layout 2 kolom */
+        text-align: left;
+        /* Teks rata kiri untuk desktop */
+        gap: 30px;
+    }
+
+    .card-left {
+        padding-right: 20px;
+        align-items: flex-start;
+        /* Teks rata kiri */
+        text-align: left;
+    }
+
+    .card-right {
+        align-items: center;
+        /* Tetap pusatkan gambar & teks di kolom kanan */
+        text-align: center;
+    }
+
+    .greeting-text {
+        font-size: 1.2rem;
+    }
+
+    .guest-name-display {
+        font-size: 1.8rem;
+    }
+
+    .main-title {
+        font-size: 1.5rem;
+    }
+
+    .couple-names {
+        font-size: 3.5rem;
+    }
+
+    .quote-text {
+        font-size: 1rem;
+    }
+
+    .countdown-value {
+        font-size: 2.2rem;
+    }
+
+    .countdown-label {
+        font-size: 0.8rem;
+    }
+
+    .wedding-finished-text {
+        font-size: 1.5rem;
+    }
+
+    .couple-image-frame {
+        width: 250px;
+        height: 350px;
+    }
+
+    .love-you-text {
+        font-size: 2rem;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    /* Posisi button-container agar sesuai di desktop */
+    .button-container {
+        width: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        /* Ikuti rata kiri card-left */
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .line-separator {
+        width: 80px;
+        /* Kembali ke lebar normal di desktop */
+    }
+
+    .open-invitation-button {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        width: auto;
+    }
+
+    /* --- Posisi dan Ukuran Elemen Dekoratif Bunga (Aktifkan di desktop) --- */
+    .decor-bunga1,
+    .decor-bunga2,
+    .decor-bunga3 {
+        display: block;
+        /* Aktifkan kembali di desktop */
+        z-index: 0;
+        /* Pastikan di belakang card */
+    }
+
+    .decor-bunga1 {
+        top: 10%;
+        left: 5%;
+        width: 250px;
+        animation-delay: 0.5s;
+        --push-x: -30px;
+        --push-y: -30px;
+        --final-x: -50px;
+        --final-y: -50px;
+        --rotate: -10deg;
+        --final-rotate: -15deg;
+    }
+
+    .decor-bunga2 {
+        bottom: 8%;
+        right: 10%;
+        width: 280px;
+        animation-delay: 0.7s;
+        --push-x: 30px;
+        --push-y: 30px;
+        --final-x: 50px;
+        --final-y: 50px;
+        --rotate: 10deg;
+        --final-rotate: 15deg;
+    }
+
+    .decor-bunga3 {
+        top: 5%;
+        right: 5%;
+        width: 200px;
+        animation-delay: 0.9s;
+        --push-x: 30px;
+        --push-y: -30px;
+        --final-x: 50px;
+        --final-y: -50px;
+        --rotate: 10deg;
+        --final-rotate: 15deg;
+    } }

@@ -1,0 +1,60 @@
+/* src/index.css */
+
+/* Reset CSS Dasar */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* Model kotak yang lebih intuitif */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  /* Font default untuk body */
+  line-height: 1.6;
+  /* Keterbacaan yang lebih baik */
+  -webkit-font-smoothing: antialiased;
+  /* Perhalus teks di WebKit */
+  -moz-osx-font-smoothing: grayscale;
+  /* Perhalus teks di Firefox */
+  background-color: #F7E7E9;
+  /* Dusty Rose lembut sebagai warna dasar halaman */
+  color: #333;
+  /* Warna teks default */
+  overflow-x: hidden;
+  /* Mencegah scroll horizontal yang tidak diinginkan */
+}
+
+/* Base styling untuk link */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Base styling untuk button */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Pastikan elemen gambar responsif */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Menyembunyikan scrollbar di beberapa browser (opsional) */
+html {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /* Untuk Chrome, Safari, Opera */
+}
