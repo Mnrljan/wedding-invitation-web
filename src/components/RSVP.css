@@ -1,24 +1,52 @@
 /* src/components/RSVP.css */
 
+/* ==================================== */
+/* 1. Base RSVP Section Styling (Mobile-First) */
+/* ==================================== */
 .rsvp-section {
-    padding: 80px 20px;
+    padding: 60px 20px;
+    /* Padding untuk mobile */
     background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #f3e8ff 100%);
+    /* Gradasi latar belakang */
     min-height: 100vh;
+    text-align: center;
+    /* Pusatkan teks */
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 0;
+
+    /* Gaya awal (tersembunyi) untuk reveal on scroll */
+    opacity: 0;
+    transform: translateY(30px) translateZ(0);
+    /* Muncul dari bawah */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    /* Transisi untuk reveal */
+    will-change: opacity, transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-.rsvp-container {
-    max-width: 800px;
-    margin: 0 auto;
+/* Kelas untuk memicu reveal */
+.rsvp-section.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
 }
 
+
+/* ==================================== */
+/* 2. RSVP Header Styling */
+/* ==================================== */
 .rsvp-header {
     text-align: center;
     margin-bottom: 50px;
+    /* Jarak ke konten di bawahnya */
 }
 
 .rsvp-title {
     font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
+    /* Ukuran judul untuk mobile */
     color: #A0522D;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -26,65 +54,88 @@
 
 .rsvp-subtitle {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    /* Ukuran subtitle untuk mobile */
     color: #8B4513;
     font-style: italic;
     opacity: 0.8;
 }
 
-/* Tab Navigation */
-.rsvp-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    background: white;
-    border-radius: 15px;
-    padding: 8px;
-    box-shadow: 0 4px 20px rgba(160, 82, 45, 0.1);
-    overflow-x: auto;
-}
+/* ==================================== */
+/* 3. Tab Navigation (DIHAPUS DARI JS, JADI STYLING INI TIDAK AKAN DIGUNAKAN) */
+/* ==================================== */
+/* .rsvp-tabs { ... } */
+/* .tab-button { ... } */
+/* .tab-button:hover { ... } */
+/* .tab-button.active { ... } */
 
-.tab-button {
-    flex: 1;
-    background: none;
-    border: none;
-    padding: 15px 20px;
-    font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #8B4513;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    min-width: 120px;
-}
 
-.tab-button:hover {
-    background: rgba(160, 82, 45, 0.1);
-    color: #A0522D;
-}
-
-.tab-button.active {
-    background: linear-gradient(135deg, #A0522D, #D2691E);
-    color: white;
-    box-shadow: 0 4px 15px rgba(160, 82, 45, 0.3);
-}
-
-/* Tab Content */
-.tab-content {
+/* ==================================== */
+/* 4. Content Sections (RSVP Form, Wedding Gift, Wishes) */
+/* ==================================== */
+.section-content-card {
     background: white;
     border-radius: 20px;
-    padding: 40px;
+    padding: 30px;
+    /* Padding untuk mobile */
     box-shadow: 0 8px 32px rgba(160, 82, 45, 0.1);
     border: 1px solid rgba(160, 82, 45, 0.1);
+    margin-bottom: 40px;
+    /* Jarak antar setiap section konten */
+    max-width: 600px;
+    /* Batasi lebar */
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Animasi muncul untuk setiap card konten */
+    opacity: 0;
+    transform: translateY(30px) translateZ(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-/* Form Styles */
+/* Delay animasi untuk setiap section konten */
+.rsvp-section.is-visible .rsvp-form-section {
+    transition-delay: 0.3s;
+}
+
+.rsvp-section.is-visible .wedding-gift-section {
+    transition-delay: 0.6s;
+}
+
+.rsvp-section.is-visible .wishes-messages-section {
+    transition-delay: 0.9s;
+}
+
+/* Memicu reveal untuk card konten saat section induk is-visible */
+.rsvp-section.is-visible .section-content-card {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+}
+
+.section-content-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    /* Ukuran judul sub-section untuk mobile */
+    color: #A0522D;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ==================================== */
+/* 5. Form Styles (RSVP & Wish) */
+/* ==================================== */
 .rsvp-form,
 .wish-form {
     max-width: 600px;
+    /* Lebar maksimal form di dalam card */
     margin: 0 auto;
+    text-align: left;
+    /* Rata kiri untuk elemen form */
 }
 
 .form-group {
@@ -231,18 +282,21 @@
     color: #8B4513;
 }
 
-/* Wedding Gift Styles */
+/* ==================================== */
+/* 6. Wedding Gift Styles */
+/* ==================================== */
 .gift-header {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.gift-header h3 {
+/* Ini adalah h3 di dalam .section-content-card */
+/* .gift-header h3 {
     font-family: 'Great Vibes', cursive;
     font-size: 2.5rem;
     color: #A0522D;
     margin-bottom: 15px;
-}
+} */
 
 .gift-header p {
     font-family: 'Playfair Display', serif;
@@ -309,6 +363,7 @@
 
 .account-number {
     font-family: 'Courier New', monospace;
+    /* Font monospace untuk nomor rekening */
     font-size: 1.2rem;
     font-weight: 700;
     color: #A0522D;
@@ -333,17 +388,21 @@
     box-shadow: 0 4px 15px rgba(160, 82, 45, 0.3);
 }
 
-/* Wishes Section */
-.wishes-section h3 {
+/* ==================================== */
+/* 7. Wishes & Messages Styles */
+/* ==================================== */
+/* Ini adalah h3 di dalam .section-content-card */
+/* .wishes-section h3 {
     font-family: 'Great Vibes', cursive;
     font-size: 2.5rem;
     color: #A0522D;
     text-align: center;
     margin-bottom: 30px;
-}
+} */
 
 .wishes-display {
     margin-top: 50px;
+    /* Jarak dari form ke daftar ucapan */
 }
 
 .wishes-display h4 {
@@ -359,10 +418,14 @@
     flex-direction: column;
     gap: 20px;
     max-height: 400px;
+    /* Batasi tinggi daftar ucapan */
     overflow-y: auto;
+    /* Aktifkan scroll jika lebih tinggi */
     padding-right: 10px;
+    /* Padding untuk scrollbar */
 }
 
+/* Scrollbar styling (Webkit browsers) */
 .wishes-list::-webkit-scrollbar {
     width: 6px;
 }
@@ -419,7 +482,20 @@
     margin: 0;
 }
 
-/* Mobile Responsiveness */
+/* Loading/No Wishes Text */
+.loading-text,
+.no-wishes-text {
+    font-family: 'Playfair Display', serif;
+    color: #A0522D;
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* ==================================== */
+/* 8. Mobile Responsiveness */
+/* ==================================== */
 @media (max-width: 768px) {
     .rsvp-section {
         padding: 60px 15px;
@@ -433,19 +509,82 @@
         font-size: 1rem;
     }
 
-    .rsvp-tabs {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .tab-button {
-        min-width: auto;
-        padding: 12px 15px;
-        font-size: 0.85rem;
-    }
-
-    .tab-content {
+    .section-content-card {
         padding: 25px 20px;
+        margin-bottom: 30px;
+    }
+
+    .section-content-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    /* Radio Button Styles */
+    .radio-option {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .radio-custom {
+        width: 18px;
+        height: 18px;
+    }
+
+    .radio-option input[type="radio"]:checked+.radio-custom::after {
+        width: 7px;
+        height: 7px;
+    }
+
+    /* Submit Button */
+    .submit-button {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    /* Success Message */
+    .success-message {
+        padding: 30px 15px;
+    }
+
+    .success-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .success-message h3,
+    .success-message h4 {
+        font-size: 1.8rem;
+    }
+
+    .success-message p {
+        font-size: 0.9rem;
+    }
+
+    /* Gift Section */
+    .gift-header h3 {
+        font-size: 2rem;
+    }
+
+    .gift-header p {
+        font-size: 0.9rem;
     }
 
     .gift-accounts {
@@ -456,19 +595,57 @@
         padding: 20px;
     }
 
+    .gift-logo {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        /* Jarak untuk tampilan column */
+    }
+
     .gift-header-info {
         flex-direction: column;
+        /* Ubah ke column di mobile */
         text-align: center;
         margin-bottom: 15px;
     }
 
-    .gift-logo {
-        margin-right: 0;
-        margin-bottom: 10px;
+    .gift-details h4 {
+        font-size: 1.1rem;
+    }
+
+    .gift-account-name {
+        font-size: 0.8rem;
     }
 
     .account-number {
         font-size: 1rem;
+        word-break: break-all;
+        /* Agar nomor tidak keluar container */
+    }
+
+    .copy-button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Wishes Section */
+    .wishes-section h3 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    .wishes-display h4 {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+    }
+
+    .wishes-list {
+        max-height: 350px;
+        /* Kurangi tinggi di mobile */
+        padding-right: 8px;
+    }
+
+    .wish-card {
+        padding: 15px;
     }
 
     .wish-header {
@@ -476,38 +653,16 @@
         align-items: flex-start;
         gap: 5px;
     }
-}
 
-@media (max-width: 480px) {
-    .rsvp-title {
-        font-size: 2rem;
-    }
-
-    .tab-content {
-        padding: 20px 15px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        padding: 12px;
-    }
-
-    .radio-option {
-        padding: 12px;
-    }
-
-    .submit-button {
-        padding: 15px;
+    .wish-name {
         font-size: 1rem;
     }
 
-    .gift-card {
-        padding: 15px;
+    .wish-date {
+        font-size: 0.75rem;
     }
 
-    .account-number {
+    .wish-message {
         font-size: 0.9rem;
-        word-break: break-all;
     }
 }

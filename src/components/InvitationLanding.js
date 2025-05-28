@@ -1,15 +1,14 @@
 // src/components/InvitationLanding.js
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import './InvitationLanding.css'; // Import CSS untuk styling
+import './InvitationLanding.css';
 
-// Import aset gambar dekoratif dan gambar couple
 import bunga1 from '../images/bunga1.png';
 import bunga2 from '../images/bunga2.png';
 import bunga3 from '../images/bunga3.svg';
-import landingImage from '../images/4.jpeg'; // Gambar couple sementara
+import landingImage from '../images/4.jpeg';
 
-function InvitationLanding() {
+function InvitationLanding({ audioRef }) {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const [guestName, setGuestName] = useState('Tamu Undangan');
@@ -22,34 +21,31 @@ function InvitationLanding() {
     }, [searchParams]);
 
     const handleOpenInvitation = () => {
-        navigate('/main'); // Navigasi ke halaman utama undangan
+        // Play audio setelah klik tombol
+        if (audioRef?.current) {
+            audioRef.current.play().catch(err => console.log("Audio play failed", err));
+        }
+
+        navigate('/main');
     };
 
     return (
         <div className="invitation-landing-container">
-            {/* Elemen dekoratif bunga, diposisikan absolut melalui CSS */}
             <img src={bunga1} alt="Dekorasi Bunga 1" className="decor-bunga1" />
             <img src={bunga2} alt="Dekorasi Bunga 2" className="decor-bunga2" />
             <img src={bunga3} alt="Dekorasi Bunga 3" className="decor-bunga3" />
 
             <div className="invitation-card">
-                {/* Konten Sisi Kiri (Akan menjadi atas di mobile) */}
                 <div className="card-left">
                     <p className="greeting-text">Yth. Bapak/Ibu/Rekan</p>
                     <h2 className="guest-name-display">{guestName}</h2>
                     <h1 className="main-title">The Wedding Of</h1>
                     <h1 className="couple-names" style={{ fontFamily: 'Great Vibes, cursive' }}>
-                        Ipan & Risma {/* Ganti dengan nama kalian */}
+                        Ipan & Risma
                     </h1>
                     <p className="quote-text">"Together through the good times and the bad"</p>
-
-                    {/* Lokasi Countdown Timer */}
-
-
-                    {/* Perhatikan: Tombol "Open Invitation" akan dipindahkan ke bawah via CSS order di mobile */}
                 </div>
 
-                {/* Konten Sisi Kanan (Akan menjadi bawah di mobile) */}
                 <div className="card-right">
                     <div className="couple-image-frame">
                         <img src={landingImage} alt="Foto Pasangan" className="couple-image" />
@@ -57,9 +53,7 @@ function InvitationLanding() {
                     <p className="love-you-text">I Love You</p>
                 </div>
 
-                {/* Tombol "Open Invitation" di luar card-left/right agar mudah diatur di mobile */}
                 <div className="button-container">
-                    {/* Pindahkan garis di dekat tombol */}
                     <button className="open-invitation-button" onClick={handleOpenInvitation}>
                         Open Invitation
                     </button>
