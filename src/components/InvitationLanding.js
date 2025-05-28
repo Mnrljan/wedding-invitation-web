@@ -12,43 +12,14 @@ import landingImage from '../images/4.jpeg'; // Gambar couple sementara
 function InvitationLanding() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
-    const [guestName, setGuestName] = useState('Tamu Undangan'); // Nama default jika tidak ada parameter
-
-    // --- State untuk Countdown Timer ---
-    const weddingDate = new Date('2025-06-15T00:00:00'); // Ganti dengan tanggal dan waktu pernikahan kalian
-    const [timeLeft, setTimeLeft] = useState(getTimeDifference(weddingDate));
+    const [guestName, setGuestName] = useState('Tamu Undangan');
 
     useEffect(() => {
         const nameFromUrl = searchParams.get('to');
         if (nameFromUrl) {
             setGuestName(decodeURIComponent(nameFromUrl));
         }
-
-        // --- Efek untuk Countdown Timer ---
-        const timer = setInterval(() => {
-            setTimeLeft(getTimeDifference(weddingDate));
-        }, 1000);
-
-        return () => clearInterval(timer); // Cleanup timer saat komponen di-unmount
-    }, [searchParams, weddingDate]);
-
-    // Fungsi untuk menghitung sisa waktu
-    function getTimeDifference(targetDate) {
-        const total = Date.parse(targetDate) - Date.parse(new Date());
-        const seconds = Math.floor((total / 1000) % 60);
-        const minutes = Math.floor((total / 1000 / 60) % 60);
-        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-        const days = Math.floor(total / (1000 * 60 * 60 * 24));
-
-        return {
-            total,
-            days,
-            hours,
-            minutes,
-            seconds,
-        };
-    }
-    // --- End Countdown Timer Logic ---
+    }, [searchParams]);
 
     const handleOpenInvitation = () => {
         navigate('/main'); // Navigasi ke halaman utama undangan
@@ -73,7 +44,7 @@ function InvitationLanding() {
                     <p className="quote-text">"Together through the good times and the bad"</p>
 
                     {/* Lokasi Countdown Timer */}
-                    
+
 
                     {/* Perhatikan: Tombol "Open Invitation" akan dipindahkan ke bawah via CSS order di mobile */}
                 </div>

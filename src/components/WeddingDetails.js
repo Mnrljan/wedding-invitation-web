@@ -1,5 +1,6 @@
 // src/components/WeddingDetails.js
-import React, { useState, useEffect } from 'react';
+// Import useMemo dari React
+import React, { useState, useEffect, useMemo } from 'react'; // <<< Tambahkan useMemo
 import './WeddingDetails.css';
 
 const WeddingDetails = () => {
@@ -11,7 +12,9 @@ const WeddingDetails = () => {
     });
 
     // Set tanggal wedding - ganti sesuai kebutuhan
-    const weddingDate = new Date('2025-06-15T08:00:00');
+    // <<< PERBAIKAN WARNING: Gunakan useMemo untuk weddingDate
+    const weddingDate = useMemo(() => new Date('2025-06-15T08:00:00'), []);
+    // <<< AKHIR PERBAIKAN
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -25,30 +28,17 @@ const WeddingDetails = () => {
                     minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
                     seconds: Math.floor((distance % (1000 * 60)) / 1000)
                 });
+            } else {
+                clearInterval(timer); // Hentikan timer jika sudah lewat
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); // Pastikan semua nol
             }
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [weddingDate]);
-
-    const handleSaveDate = () => {
-        // Buat event calendar
-        const event = {
-            title: 'Wedding Ceremony',
-            start: weddingDate,
-            end: new Date(weddingDate.getTime() + (4 * 60 * 60 * 1000)), // 4 jam
-            description: 'Wedding Ceremony - Akad Nikah'
-        };
-
-        // Format untuk Google Calendar
-        const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${weddingDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${new Date(weddingDate.getTime() + (4 * 60 * 60 * 1000)).toISOString().replace(/[-:]/g, '').split('.')[0]}Z&details=${encodeURIComponent(event.description)}`;
-
-        window.open(googleCalendarUrl, '_blank');
-    };
+    }, [weddingDate]); // Dependensi weddingDate sekarang sudah stabil berkat useMemo
 
     const handleOpenMaps = () => {
-        // Ganti dengan koordinat atau alamat venue sebenarnya
-        const address = "Kediaman Mempelai Wanita, Kp.Ciparay Wetan RT 03 RW 010 Ds. Cisarua, Kec. Nanggung, Kab. Bogor 16650";
+        // Variabel 'address' telah dihapus di sini, karena tidak digunakan
         const mapsUrl = `https://www.google.com/maps/place/6%C2%B035'30.5%22S+106%C2%B032'44.6%22E/@-6.591815,106.5431557,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-6.591815!4d106.5457306?hl=id&entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D`;
         window.open(mapsUrl, '_blank');
     };
@@ -112,7 +102,7 @@ const WeddingDetails = () => {
                         <p className="venue-name">Kediaman Mempelai Wanita</p>
                         <p className="venue-address">
                             kp.bongas rt03/05 desa kalongliud,<br />
-                            Kec. Nanggung, Kab. Bogor 16650
+                            Kec. Nanggung, Kab. Bogor
                         </p>
                     </div>
                     <button className="maps-button" onClick={handleOpenMaps}>

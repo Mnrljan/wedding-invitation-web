@@ -120,56 +120,6 @@
     margin-bottom: 20px;
 }
 
-/* --- Countdown Timer Styling (Mobile) --- */
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    /* Jarak antar item lebih kecil di mobile */
-    margin-top: 15px;
-    margin-bottom: 25px;
-    text-align: center;
-    width: 100%;
-    /* Ambil lebar penuh */
-}
-
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    /* Agar item countdown berbagi ruang secara merata */
-    max-width: 70px;
-    /* Batasi lebar item */
-}
-
-.countdown-value {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
-    /* Ukuran angka lebih kecil di mobile */
-    font-weight: bold;
-    color: #A0522D;
-    line-height: 1.2;
-}
-
-.countdown-label {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.7rem;
-    /* Ukuran label lebih kecil */
-    color: #777;
-    text-transform: uppercase;
-    margin-top: 5px;
-}
-
-.wedding-finished-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: #A0522D;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
 /* --- Couple Image & Love You Text Styling (Mobile) --- */
 .couple-image-frame {
     width: 200px;
@@ -326,18 +276,6 @@
 
     .quote-text {
         font-size: 1rem;
-    }
-
-    .countdown-value {
-        font-size: 2.2rem;
-    }
-
-    .countdown-label {
-        font-size: 0.8rem;
-    }
-
-    .wedding-finished-text {
-        font-size: 1.5rem;
     }
 
     .couple-image-frame {
