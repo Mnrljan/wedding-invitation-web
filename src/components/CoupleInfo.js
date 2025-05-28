@@ -68,7 +68,7 @@ function CoupleInfo() {
                             <h3 className="couple-full-name">Ipan Nahrowi</h3>
                             <p className="parents-info">
                                 Putra dari <br />
-                                Bapak Mamat & Ibu Yeti
+                                Bapak Mamat & Ibu Yuyum
                             </p>
                         </div>
                     </div>
