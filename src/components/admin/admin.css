@@ -1,0 +1,475 @@
+/* src/components/admin/admin.css */
+
+/* General Admin Page Wrapper */
+.admin-page-wrapper {
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+}
+
+/* Header Admin */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A0522D;
+    /* Gold Blush */
+    padding: 20px 30px;
+    color: white;
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+.admin-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.admin-logout-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.admin-logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Admin Content Area */
+.admin-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.admin-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #A0522D;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* ==================================== */
+/* Add Guest Form */
+/* ==================================== */
+.add-guest-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-guest-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.add-guest-form input:focus {
+    outline: none;
+    border-color: #A0522D;
+    box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.1);
+}
+
+.add-guest-form button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.add-guest-form button:hover {
+    background-color: #4cae4c;
+}
+
+/* ==================================== */
+/* Upload Excel Card */
+/* ==================================== */
+/* .upload-excel-card {
+    Inherits from .admin-card
+} */
+
+.upload-excel-card input[type="file"] {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.9rem;
+    background-color: #fefefe;
+    cursor: pointer;
+}
+
+.upload-excel-card button.upload-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.upload-excel-card button.upload-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.upload-excel-card button.upload-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.upload-message {
+    font-size: 0.9rem;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.upload-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.upload-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ==================================== */
+/* Guest List Table */
+/* ==================================== */
+/* .guest-list-card {
+    Inherits from .admin-card
+} */
+
+.guest-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    /* Agar tombol bisa turun ke bawah di mobile */
+    gap: 10px;
+    /* Jarak antar item di header */
+}
+
+.guest-list-header .card-title {
+    margin-bottom: 0;
+    text-align: center;
+    flex-basis: 100%;
+    /* Judul ambil lebar penuh di mobile */
+}
+
+.guest-list-actions {
+    /* Wrapper untuk tombol aksi tabel */
+    display: flex;
+    gap: 10px;
+    /* Jarak antar tombol download dan delete all */
+    flex-wrap: wrap;
+    /* Agar tombol bisa wrap di mobile */
+}
+
+.download-button {
+    background-color: #A0522D;
+    /* Gold Blush */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #b36b3f;
+}
+
+/* --- TOMBOL "Hapus Semua Data" STYLING BARU --- */
+.delete-all-button {
+    background-color: #e74c3c;
+    /* Warna merah yang tegas */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(231, 76, 60, 0.2);
+    /* Sedikit bayangan */
+}
+
+.delete-all-button:hover {
+    background-color: #c0392b;
+    /* Merah yang lebih gelap saat hover */
+    transform: translateY(-1px);
+    /* Efek sedikit naik */ }
+
+.guest-list-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.guest-list-table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.guest-list-table-wrapper th,
+.guest-list-table-wrapper td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 0.9rem;
+    vertical-align: top;
+    /* Ubah ke top agar textarea tidak terpotong */
+}
+
+.guest-list-table-wrapper th {
+    background-color: #f7f7f7;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.guest-list-table-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.guest-list-table-wrapper tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* --- Styling untuk Formatted Invitation Display --- */
+.formatted-invitation-display {
+    display: flex;
+    flex-direction: column;
+    /* Teks area di atas tombol salin */
+    gap: 8px;
+    width: 100%;
+    /* Ambil lebar penuh sel tabel */
+}
+
+.formatted-invitation-textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    background-color: #f9f9f9;
+    resize: vertical;
+    /* Izinkan user resize vertikal */
+    min-height: 100px;
+    /* Tinggi minimum agar terlihat */
+    font-family: 'Open Sans', sans-serif;
+    /* Font yang mudah dibaca */
+    line-height: 1.5;
+    white-space: pre-wrap;
+    /* Penting untuk menjaga format baris baru */
+}
+
+.copy-link-button {
+    /* Inherits from common button styles */
+    width: auto;
+    /* Biarkan tombol mengikuti lebar teks */
+    align-self: flex-end;
+    /* Posisikan tombol di kanan bawah */
+}
+
+.copy-link-button,
+.delete-guest-button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy-link-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.copy-link-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-guest-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-guest-button:hover {
+    background-color: #c82333;
+}
+
+/* ==================================== */
+/* Pagination Controls */
+/* ==================================== */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 10px;
+    /* Padding atas untuk pemisah */
+    border-top: 1px solid #eee;
+    /* Garis pemisah dari tabel */
+}
+
+.pagination-controls button {
+    background-color: #A0522D;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #b36b3f;
+}
+
+.pagination-controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls span {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ==================================== */
+/* Mobile Responsiveness for Admin Page */
+/* ==================================== */
+@media (max-width: 768px) {
+    .admin-page-wrapper {
+        padding: 15px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 20px;
+        border-radius: 8px 8px 0 0;
+        /* Sudut lebih kecil di mobile */
+    }
+
+    .admin-title {
+        font-size: 1.8rem;
+    }
+
+    .admin-logout-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .admin-content {
+        gap: 20px;
+    }
+
+    .admin-card {
+        padding: 25px;
+        gap: 15px;
+        border-radius: 8px;
+        /* Sudut lebih kecil di mobile */
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .add-guest-form input,
+    .add-guest-form button,
+    .upload-excel-card input[type="file"],
+    .upload-excel-card button.upload-button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .upload-message {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .guest-list-table-wrapper th,
+    .guest-list-table-wrapper td {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+    }
+
+    .formatted-invitation-display {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .formatted-invitation-textarea {
+        width: 100%;
+        min-height: 80px;
+        /* Tinggi minimum di mobile */
+        font-size: 0.75rem;
+    }
+
+    .copy-link-button {
+        width: 100%;
+        /* Ambil lebar penuh di mobile */
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        align-self: stretch;
+        /* Stretch tombol ke lebar penuh */
+    }
+
+    .delete-guest-button {
+        width: 100%;
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        margin-top: 5px;
+    }
+}
