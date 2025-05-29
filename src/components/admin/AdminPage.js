@@ -1,8 +1,8 @@
 // src/components/admin/AdminPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../firebase';
-import { collection, addDoc, query, deleteDoc, doc, writeBatch, getDocs } from 'firebase/firestore'; // <<< PASTIKAN getDocs diimpor
+import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, writeBatch, getDocs } from 'firebase/firestore'; // <<< PASTIKAN getDocs diimpor
 import { useNavigate } from 'react-router-dom';
 import * as XLSX from 'xlsx'; // Pastikan library xlsx terinstal: npm install xlsx
 import './admin.css';
@@ -11,115 +11,115 @@ import './admin.css';
 // Komponen Pembantu: AddGuestForm
 // =========================================================
 const AddGuestForm = ({ onAddGuest }) => {
-    const [guestName, setGuestName] = useState('');
+  const [guestName, setGuestName] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onAddGuest(guestName.trim());
-        setGuestName('');
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddGuest(guestName.trim());
+    setGuestName('');
+  };
 
-    return (
-        <div className="admin-card add-guest-card">
-            <h3 className="card-title">Tambah Tamu Manual</h3>
-            <form onSubmit={handleSubmit} className="add-guest-form">
-                <input
-                    type="text"
-                    value={guestName}
-                    onChange={(e) => setGuestName(e.target.value)}
-                    placeholder="Nama Tamu (misal: Bapak/Ibu Keluarga Budi)"
-                    required
-                />
-                <button type="submit" className="add-guest-button">Tambahkan Tamu</button>
-            </form>
-        </div>
-    );
+  return (
+    <div className="admin-card add-guest-card">
+      <h3 className="card-title">Tambah Tamu Manual</h3>
+      <form onSubmit={handleSubmit} className="add-guest-form">
+        <input
+          type="text"
+          value={guestName}
+          onChange={(e) => setGuestName(e.target.value)}
+          placeholder="Nama Tamu (misal: Bapak/Ibu Keluarga Budi)"
+          required
+        />
+        <button type="submit" className="add-guest-button">Tambahkan Tamu</button>
+      </form>
+    </div>
+  );
 };
 
 // =========================================================
 // Komponen Pembantu: UploadGuestExcel
 // =========================================================
 const UploadGuestExcel = ({ onUploadGuests }) => {
-    const [file, setFile] = useState(null);
-    const [message, setMessage] = useState('');
-    const [isError, setIsError] = useState(false);
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-        setMessage('');
-        setIsError(false);
-    };
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setMessage('');
+    setIsError(false);
+  };
 
-    const handleUpload = async () => {
-        if (!file) {
-            setMessage('Pilih file Excel/CSV terlebih dahulu.');
-            setIsError(true);
-            return;
+  const handleUpload = async () => {
+    if (!file) {
+      setMessage('Pilih file Excel/CSV terlebih dahulu.');
+      setIsError(true);
+      return;
+    }
+
+    setMessage('Memproses file...');
+    setIsError(false);
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        // Asumsi kolom nama tamu ada di kolom pertama (indeks 0)
+        // json: array of arrays. header: 1 berarti baris pertama adalah header
+        const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+        if (json.length < 2) { // Minimal 2 baris (header + 1 data)
+          setMessage('File Excel/CSV kosong atau tidak memiliki data.');
+          setIsError(true);
+          return;
         }
 
-        setMessage('Memproses file...');
+        const guestNames = json.slice(1) // Lewati baris header
+                              .map(row => row[0]) // Ambil kolom pertama
+                              .filter(name => typeof name === 'string' && name.trim() !== ''); // Filter nama yang valid
+
+        if (guestNames.length === 0) {
+          setMessage('Tidak ada nama tamu yang ditemukan di kolom pertama.');
+          setIsError(true);
+          return;
+        }
+
+        await onUploadGuests(guestNames); // Panggil fungsi upload di parent
+        setMessage(`Berhasil menambahkan ${guestNames.length} tamu.`);
         setIsError(false);
-
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            try {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-                // Asumsi kolom nama tamu ada di kolom pertama (indeks 0)
-                // json: array of arrays. header: 1 berarti baris pertama adalah header
-                const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                if (json.length < 2) { // Minimal 2 baris (header + 1 data)
-                    setMessage('File Excel/CSV kosong atau tidak memiliki data.');
-                    setIsError(true);
-                    return;
-                }
-
-                const guestNames = json.slice(1) // Lewati baris header
-                    .map(row => row[0]) // Ambil kolom pertama
-                    .filter(name => typeof name === 'string' && name.trim() !== ''); // Filter nama yang valid
-
-                if (guestNames.length === 0) {
-                    setMessage('Tidak ada nama tamu yang ditemukan di kolom pertama.');
-                    setIsError(true);
-                    return;
-                }
-
-                await onUploadGuests(guestNames); // Panggil fungsi upload di parent
-                setMessage(`Berhasil menambahkan ${guestNames.length} tamu.`);
-                setIsError(false);
-                setFile(null); // Reset input file
-                document.getElementById('excel-upload-input').value = ''; // Clear file input
-            } catch (err) {
-                console.error("Error processing Excel file:", err);
-                setMessage('Gagal memproses file. Pastikan formatnya benar (kolom nama di A1).');
-                setIsError(true);
-            }
-        };
-        reader.readAsArrayBuffer(file);
+        setFile(null); // Reset input file
+        document.getElementById('excel-upload-input').value = ''; // Clear file input
+      } catch (err) {
+        console.error("Error processing Excel file:", err);
+        setMessage('Gagal memproses file. Pastikan formatnya benar (kolom nama di A1).');
+        setIsError(true);
+      }
     };
+    reader.readAsArrayBuffer(file);
+  };
 
-    return (
-        <div className="admin-card upload-excel-card">
-            <h3 className="card-title">Upload Tamu dari Excel/CSV</h3>
-            <input
-                type="file"
-                id="excel-upload-input"
-                accept=".xlsx, .xls, .csv" // Hanya terima format ini
-                onChange={handleFileChange}
-            />
-            <button onClick={handleUpload} className="upload-button" disabled={!file}>
-                Upload File
-            </button>
-            {message && (
-                <p className={`upload-message ${isError ? 'error' : 'success'}`}>
-                    {message}
-                </p>
-            )}
-        </div>
-    );
+  return (
+    <div className="admin-card upload-excel-card">
+      <h3 className="card-title">Upload Tamu dari Excel/CSV</h3>
+      <input
+        type="file"
+        id="excel-upload-input"
+        accept=".xlsx, .xls, .csv" // Hanya terima format ini
+        onChange={handleFileChange}
+      />
+      <button onClick={handleUpload} className="upload-button" disabled={!file}>
+        Upload File
+      </button>
+      {message && (
+        <p className={`upload-message ${isError ? 'error' : 'success'}`}>
+          {message}
+        </p>
+      )}
+    </div>
+  );
 };
 
 // =========================================================
@@ -140,7 +140,7 @@ const GuestListTable = ({ guests, onDeleteGuest, baseUrl, onCopyLink, loadingGue
                     <button onClick={onDeleteAllGuests} className="delete-all-button">Hapus Semua Data</button>
                 </div>
             </div>
-
+            
             {loadingGuests ? (
                 <p>Memuat daftar tamu...</p>
             ) : guests.length === 0 ? (
@@ -207,8 +207,8 @@ const GuestListTable = ({ guests, onDeleteGuest, baseUrl, onCopyLink, loadingGue
 // Komponen Utama: AdminPage
 // =========================================================
 function AdminPage() {
-    const [allGuests] = useState([]); // Simpan semua tamu yang diambil dari Firebase
-    const [loadingGuests] = useState(true);
+    const [allGuests, setAllGuests] = useState([]); // Simpan semua tamu yang diambil dari Firebase
+    const [loadingGuests, setLoadingGuests] = useState(true);
     const navigate = useNavigate();
 
     // --- State untuk Pagination ---
@@ -243,6 +243,40 @@ Hormat Kami
 Ipan & Risma`;
     };
     // --- AKHIR FUNGSI generateFormattedInvitation ---
+
+
+    // --- useEffect untuk Mengambil Daftar Tamu dari Firebase (Realtime) ---
+    useEffect(() => {
+        if (!auth.currentUser) {
+            setLoadingGuests(false);
+            return;
+        }
+
+        const q = query(collection(db, 'guests'), orderBy('timestamp', 'desc'));
+
+        // onSnapshot akan mendengarkan perubahan data secara realtime
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const fetchedGuests = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setAllGuests(fetchedGuests); // Set semua tamu
+            setLoadingGuests(false);
+            // Jika halaman saat ini menjadi kosong karena penghapusan, pindah ke halaman sebelumnya
+            if (fetchedGuests.length > 0 && currentPage > Math.ceil(fetchedGuests.length / itemsPerPage)) {
+                setCurrentPage(Math.ceil(fetchedGuests.length / itemsPerPage));
+            } else if (fetchedGuests.length === 0 && currentPage > 1) {
+                setCurrentPage(1); // Jika semua dihapus, kembali ke halaman 1
+            }
+        }, (error) => {
+            console.error("Error fetching guests:", error);
+            setLoadingGuests(false);
+        });
+
+        // Cleanup function: hentikan langganan saat komponen di-unmount
+        return () => unsubscribe();
+    }, [auth.currentUser, currentPage]); // Tambahkan currentPage agar update saat penghapusan
+
 
     // --- Logika Pagination ---
     const indexOfLastGuest = currentPage * itemsPerPage;
