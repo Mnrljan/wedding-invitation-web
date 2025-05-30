@@ -1,5 +1,5 @@
 // src/components/admin/AdminPage.js
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, writeBatch, getDocs } from 'firebase/firestore'; // <<< PASTIKAN getDocs diimpor
@@ -275,7 +275,7 @@ Ipan & Risma`;
 
         // Cleanup function: hentikan langganan saat komponen di-unmount
         return () => unsubscribe();
-    }, [auth.currentUser, currentPage]); // Tambahkan currentPage agar update saat penghapusan
+    }, [currentPage]); // Tambahkan currentPage agar update saat penghapusan
 
 
     // --- Logika Pagination ---
