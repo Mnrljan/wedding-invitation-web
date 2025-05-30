@@ -92,7 +92,7 @@ const WeddingDetails = () => {
                     <h3 className="event-title">Akad Nikah</h3>
                     <div className="event-info">
                         <p className="event-time">🕗 08:00 WIB - Selesai</p>
-                        <p className="event-date">📅 Sabtu, 15 Juni 2025</p>
+                        <p className="event-date">📅 Minggu, 15 Juni 2025</p>
                     </div>
                 </div>
 
