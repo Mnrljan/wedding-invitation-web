@@ -21,7 +21,7 @@ import { auth } from './firebase'; // Pastikan auth diekspor dari firebase.js
 import { onAuthStateChanged } from 'firebase/auth'; // Pastikan onAuthStateChanged diimpor
 // ---
 
-import weddingSong from './assets/audio/badai.mp3';
+import weddingSong from './assets/audio/cinta.mp3';
 
 // --- Komponen PrivateRoute untuk melindungi rute admin ---
 function PrivateRoute({ children }) {

@@ -43,14 +43,12 @@ function InvitationLanding({ audioRef }) {
                     <h1 className="couple-names" style={{ fontFamily: 'Great Vibes, cursive' }}>
                         Ipan & Risma
                     </h1>
-                    <p className="quote-text">"Together through the good times and the bad"</p>
                 </div>
 
                 <div className="card-right">
                     <div className="couple-image-frame">
                         <img src={landingImage} alt="Foto Pasangan" className="couple-image" />
                     </div>
-                    <p className="love-you-text">I Love You</p>
                 </div>
 
                 <div className="button-container">
